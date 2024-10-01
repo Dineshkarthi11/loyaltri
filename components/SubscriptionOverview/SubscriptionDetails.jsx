@@ -1,6 +1,6 @@
 import React from "react";
-import LoyaltriWebApp from "../../LoyaltriWebApp/LoyaltriWebApp";
-import LoyaltriMobileApplication from "../../LoyaltriApp/LoyaltriMobileApplication";
+import LoyaltriWebApp from "../LoyaltriWebApp/LoyaltriWebApp";
+import LoyaltriMobileApplication from "../LoyaltriApp/LoyaltriMobileApplication";
 
 function SubscriptionDetails() {
   return (
@@ -31,12 +31,12 @@ function SubscriptionDetails() {
       {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
         {/* LoyaltriWebApp */}
-        <div className="min-h-[350px] max-h-[500px]">
+        <div className="min-w-[280px] min-h-[350px] max-h-[500px]">
           <LoyaltriWebApp className="w-full h-full rounded-lg shadow-lg" />
         </div>
 
         {/* LoyaltriMobileApplication */}
-        <div className="min-h-[350px] max-h-[500px]">
+        <div className="min-w-[280px] min-h-[350px] max-h-[500px]">
           <LoyaltriMobileApplication className="w-full h-full rounded-lg border border-dashed border-violet-600" />
         </div>
       </div>
