@@ -1,26 +1,25 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 function UserCount() {
-  const navigate = useNavigate(); // Initialize the navigate hook
+  const navigate = useNavigate();
 
   const handleUserCountClick = () => {
-    // Navigate to ActiveInactiveUsers page
     navigate("/active-inactive-users");
   };
 
   return (
-    <>
-      <p className="self-start mt-12 text-gray-500">Users</p>
+    <div>
+      <p className="text-gray-500">Users</p>
       <p
-        className="self-start mt-2.5 text-base font-extrabold cursor-pointer" // Add cursor-pointer to indicate clickability
-        onClick={handleUserCountClick} // Trigger navigation on click
+        className="text-base font-extrabold cursor-pointer mt-1"
+        onClick={handleUserCountClick}
       >
         <span className="text-violet-600">25/</span>
         <span className="text-sm text-violet-600">50</span>{" "}
         <span className="text-sm text-violet-600">active users</span>
       </p>
-    </>
+    </div>
   );
 }
 
