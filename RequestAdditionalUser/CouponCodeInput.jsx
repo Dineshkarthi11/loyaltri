@@ -1,12 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 
-function CouponCodeInput() {
-  const navigate = useNavigate(); // Initialize navigate hook
+function CouponCodeInput({ onApply }) {  // Receive the onApply function as a prop
 
   const handleApplyClick = () => {
-    // Navigate to RequestAdditionalUser page
-    navigate("/request-additional-user");
+    onApply();  // Call the function when Apply button is clicked
   };
 
   return (
@@ -26,7 +23,7 @@ function CouponCodeInput() {
           />
         </div>
         <button
-          onClick={handleApplyClick} // Navigate to the RequestAdditionalUser page on click
+          onClick={handleApplyClick} // Trigger onApply when clicked
           className="flex items-start self-stretch my-auto font-semibold whitespace-nowrap rounded-lg text-zinc-800 overflow-hidden gap-2 px-3.5 py-2 bg-white border border-solid shadow-sm border-black border-opacity-10"
         >
           Apply
