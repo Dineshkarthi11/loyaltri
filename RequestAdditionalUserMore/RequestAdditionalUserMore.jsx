@@ -1,8 +1,9 @@
 import React from "react";
-import UserCountInput from "./UserCountInput";
+import UserCountInput from "./UserCountInputOne";
 import DiscountCode from "./DiscountCode";
 import TotalAmount from "./TotalAmount";
 import ActionButtons from "./ActionButtons";
+import HeaderThird from "./HeaderThird";
 
 function RequestAdditionalUserMore() {
   return (
@@ -13,7 +14,7 @@ function RequestAdditionalUserMore() {
       {/* Card container */}
       <section className="relative z-10 flex flex-col justify-center py-1.5 bg-gradient-to-b from-blue-100 to-white to-[20%] rounded-3xl border border-solid border-zinc-100 max-w-[447px] shadow-[0px_31px_60px_rgba(59,55,75,0.1)]">
         <div className="flex overflow-hidden relative flex-col items-center py-5 w-full rounded-2xl max-w-[437px] shadow-[0px_10px_15px_rgba(182,181,254,0.19)]">
-          <header className="flex z-0 flex-col items-center max-w-full w-[357px]">
+          <HeaderThird className="flex z-0 flex-col items-center max-w-full w-[357px]">
             <div className="flex flex-col items-center text-base font-semibold leading-snug text-black">
               <img
                 loading="lazy"
@@ -27,7 +28,7 @@ function RequestAdditionalUserMore() {
               Need more user slots? Easily expand your current plan by requesting
               additional users for your team.
             </p>
-          </header>
+          </HeaderThird>
           <div
             className="flex absolute bottom-0 z-0 self-start w-0 border-solid border-[5px] border-zinc-300 border-opacity-60 h-[361px] min-h-[286px] right-[-113px]"
             aria-hidden="true"
