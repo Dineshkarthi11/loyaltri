@@ -1,131 +1,77 @@
-import React from "react";
-import { Button, Modal } from "antd";
-import { lightenColor } from "./lightenColor";
-import ButtonClick from "./Button";
-import { BorderColor } from "@mui/icons-material";
+import React, { useState } from "react";
+import ExpiryNotification from "./ExpiryNotification";
+import UserCount from "./UserCount";
+import RequestMoreUsers from "./RequestMoreUsers";
+import ModalAnt from "../../../common/ModalAnt";
+import Header from "../RequestAdditionalUser/Header";
+import UserCountInput from "../RequestAdditionalUser/UserCountInput";
+import CouponCodeInput from "../RequestAdditionalUser/CouponCodeInput";
+import ActionButtons from "../RequestAdditionalUser/ActionButtons";
 
-// ModalAnt component
-const ModalAnt = ({
-  isVisible,
-  onClose,
-  title,
-  onOk,
-  children,
-  width = "",
-  okText = "OK",
-  cancelText = "Cancel",
-  showOkButton = true,
-  showCancelButton = true,
-  showTitle = true,
-  showCloseButton = true,
-  okButtonClass = "",
-  cancelButtonClass = "",
-  okButtonType = "primary",
-  cancelButtonType = "default",
-  footerClass = "",
-  centered = false,
-  okButtonDanger = false,
-  cancelButtonDanger = false,
-  className = "",
-  padding = "7px",
-  customButton,
-  dangerAlert = false,
-  error = false,
-}) => {
-  const primaryColor = localStorage.getItem("mainColor");
-  const mode = localStorage.getItem("theme");
-  const lighterColor = lightenColor(primaryColor, 0.9);
-
-  const classNames = {
-    body: ["my-modal-body"],
-    mask: ["my-modal-mask"],
-    header: ["my-modal-header"],
-    footer: ["my-modal-footer"],
-    content: ["my-modal-content"],
-  };
-
-  const modalStyles = {
-    header: {
-      background: "transparent",
-      // borderLeft: `5px solid ${token.colorPrimary}`,
-      // borderRadius: 0,
-      // paddingInlineStart: 5,
-    },
-    body: {
-      // boxShadow: 'inset 0 0 5px #999',
-      // borderRadius: 5,
-    },
-    mask: {
-      // backdropFilter: 'blur(10px)',
-    },
-    footer: {
-      // borderTop: '1px solid #333   ',
-    },
-    content: {
-      border: "6px solid",
-      borderColor: `${mode === "dark" ? "#424242" : "#ffffff"}`,
-      padding: padding,
-      borderRadius: "20px",
-      background: `${mode === "dark"
-          ? "linear-gradient(rgb(29, 27, 36) 0%, rgb(48, 45, 54) 30.42%, rgb(19 24 39) 99.67%)"
-          : dangerAlert && mode !== "dark" ? "linear-gradient(184deg, #FFF2F2 4.07%, #FFF 32%, #FFF 96.21%)"
-            : `linear-gradient(180deg, ${lighterColor} 0%, rgba(255, 255, 255, 1) 30.42%, rgba(255, 255, 255, 1) 99.67%)`
-        } `,
-    },
-  };
-
-  const footer = [
-    [
-      showCancelButton && (
-        <ButtonClick
-          key={"cancel"}
-          className={cancelButtonClass}
-          BtnType={cancelButtonType}
-          buttonName={cancelText}
-          handleSubmit={onClose}
-          danger={cancelButtonDanger}
-        />
-      ),
-      showOkButton && (
-        <ButtonClick
-          key={"ok"}
-          className={okButtonClass}
-          BtnType={okButtonType}
-          buttonName={okText}
-          danger={okButtonDanger}
-          // handleSubmit={onClose}
-          handleSubmit={() => {
-            onOk();
-            if (!error) { // Close the modal only if there is no error
-              onClose();
-            } // Close the modal after handling the onOk action
-          }}
-        />
-      ),
-    ],
-  ].filter(Boolean);
+function LoyaltriMobileApplication() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <Modal
-      title={showTitle ? title : null}
-      open={isVisible}
-      onCancel={onClose}
-      width={width}
-      footer={
-        footer.length ? (
-          <div className={`flex items-center justify-end gap-3 ${footerClass}`}>
-            {customButton ? <>{customButton}</> : footer}
-          </div>
-        ) : null
-      }
-      centered={centered}
-      classNames={classNames}
-      styles={modalStyles}
-      closeIcon={showCloseButton ? undefined : <></>} // Hide close icon
-    >
-      <div className={`${className}`}>{children}</div>
-    </Modal>
-  );
-};
+    <article className="relative flex flex-col w-[380px] h-[250px] min-w-[320px] min-h-[250px] bg-white rounded-2xl border-violet-600 border-opacity-20 overflow-hidden">
+      <div className="relative flex flex-col h-full w-full p-5">
+        {/* Background Image */}
+        <img
+          loading="lazy"
+          src="https://github.com/Dineshkarthi11/loyaltri/blob/main/assets/Frame%201321316357.png?raw=true"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
 
-export default ModalAnt;
+        {/* Top-left: Title and Validity */}
+        {/* <header className="absolute top-4 left-5 z-10">
+          <h1 className="text-xl w-[150px] font-semibold text-violet-600">
+            Loyaltri Mobile Application
+          </h1>
+          <p className="mt-1 text-gray-500">Valid till 06 Jan, 2025</p>
+        </header> */}
+        
+        <div className="absolute top-4 left-5 z-10">
+            <h1 className="text-xl w-[150px] font-semibold text-violet-600">Loyaltri Web Application</h1>
+           <p className="mt-1 text-gray-500">Valid till 06 Jan, 2025</p>
+        </div>
+
+        {/* Top-right: Expiry Notification */}
+        <div className="absolute top-4 right-3 z-10">
+          <ExpiryNotification />
+        </div>
+
+        {/* Bottom-left: User Count */}
+        <div className="absolute bottom-4 left-5 z-10">
+          <UserCount />
+        </div>
+
+        {/* Bottom-right: Request More Users */}
+        <div className="absolute bottom-4 right-5 z-10">
+          <RequestMoreUsers onsubmit={()=>{
+            setIsModalOpen(true)
+          }} />
+        </div>
+      </div>
+      <ModalAnt
+        isVisible={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        // width="435px"
+        showOkButton={true}
+        okText="ubyub"
+        showCancelButton={true}
+        showTitle={false}
+        centered={true}
+        padding="8px"
+        customButton={false}
+      >
+        <section className="flex overflow-hidden relative flex-col items-center py-5 w-[437px] h-[310px] rounded-2xl max-w-[437px]">
+          <Header />
+          <UserCountInput />
+          <CouponCodeInput />
+        </section>
+      </ModalAnt>
+    </article>
+  );
+}
+
+export default LoyaltriMobileApplication;
