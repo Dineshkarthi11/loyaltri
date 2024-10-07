@@ -64,12 +64,13 @@ function BillingHistoryItem({ date, orderId, isLatest, planDetails }) {
           <img
             src="https://github.com/Dineshkarthi11/loyaltri/blob/main/assets/Frame%201321316360.png?raw=true"
             alt="Plan Details Background"
-            className="absolute inset-0 w-full h-full object-cover object-top" // Ensures the image is positioned at the top
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ minHeight: "100%", height: "auto" }}
           />
-          <div className="relative z-10 p-6 bg-opacity-80">
-            <div className="text-gray-500 text-xs">Plan details</div>
+          <div className="relative z-10 p-3 bg-opacity-80">
+            <div className="ml-6 text-gray-500 text-xs">Plan details</div>
             <div className="border-t border-gray-200 mx-5 my-2" />
-            <div className="max-h-40 overflow-y-auto">
+            <div className="relative overflow-y-auto">
               {planDetails.map((detail, index) => (
                 <div key={index} className="flex justify-between text-sm mx-6 mt-2">
                   <div className="truncate">{detail.label}</div>
