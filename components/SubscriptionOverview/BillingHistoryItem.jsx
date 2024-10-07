@@ -62,7 +62,7 @@ function BillingHistoryItem({ date, orderId, isLatest, planDetails }) {
       {isLatest && isExpanded && planDetails && (
         <div className="relative w-full rounded-lg overflow-hidden">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/268a331e469e7b69cbc1623fb4b697faa30bd7c616cf79fdc1905b2415f697d0?placeholderIfAbsent=true&apiKey=740fe41628444c68b4015f1a2abbfb39"
+            src="https://github.com/Dineshkarthi11/loyaltri/blob/main/assets/Frame%201321316360.png?raw=true"
             alt="Plan Details Background"
             className="absolute inset-0 w-full h-full object-cover"
           />
