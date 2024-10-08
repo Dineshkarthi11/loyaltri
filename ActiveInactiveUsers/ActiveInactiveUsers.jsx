@@ -1,8 +1,9 @@
 import React from "react";
-import Header from "./Header";
+import Header from "./HeaderActive";
 import UserSearch from "./UserSearch";
 import UserList from "./UserList";
 import ActionButtons from "./ActionButtons";
+import HeaderActive from "./HeaderActive";
 
 function ActiveInactiveUsers() {
   return (
@@ -14,7 +15,7 @@ function ActiveInactiveUsers() {
       <div className="w-[550px] flex flex-col items-end mr-6"> 
         {/* Header */}
         <div className="w-full">
-          <Header />
+          <HeaderActive />
         </div>
 
         {/* Divider under header */}
