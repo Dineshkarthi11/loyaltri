@@ -10,9 +10,11 @@ import HeaderSecond from "../RequestAdditionalUser/HeaderSecond";
 import HeaderActive from "../ActiveInactiveUsers/HeaderActive";
 import UserSearch from "../ActiveInactiveUsers/UserSearch";
 import UserList from "../ActiveInactiveUsers/UserList";
+import ActiveInactiveUsers from "../ActiveInactiveUsers/ActiveInactiveUsers";
 
 function LoyaltriMobileApplication() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showActiveInactiveUsers, setShowActiveInactiveUsers] = useState(false); // State to show ActiveInactiveUsers
 
   return (
     <article className="relative flex flex-col w-[380px] h-[250px] min-w-[320px] min-h-[250px] bg-white rounded-2xl border-violet-600 border-opacity-20 overflow-hidden">
@@ -26,16 +28,11 @@ function LoyaltriMobileApplication() {
         />
 
         {/* Top-left: Title and Validity */}
-        {/* <header className="absolute top-4 left-5 z-10">
+        <div className="absolute top-4 left-5 z-10">
           <h1 className="text-xl w-[150px] font-semibold text-violet-600">
-            Loyaltri Mobile Application
+            Loyaltri Web Application
           </h1>
           <p className="mt-1 text-gray-500">Valid till 06 Jan, 2025</p>
-        </header> */}
-        
-        <div className="absolute top-4 left-5 z-10">
-            <h1 className="text-xl w-[150px] font-semibold text-violet-600">Loyaltri Web Application</h1>
-           <p className="mt-1 text-gray-500">Valid till 06 Jan, 2025</p>
         </div>
 
         {/* Top-right: Expiry Notification */}
@@ -45,20 +42,22 @@ function LoyaltriMobileApplication() {
 
         {/* Bottom-left: User Count */}
         <div className="absolute bottom-4 left-5 z-10">
-          <UserCount />
+          <UserCount onClick={() => setShowActiveInactiveUsers(true)} /> {/* Add onClick */}
         </div>
 
         {/* Bottom-right: Request More Users */}
         <div className="absolute bottom-4 right-5 z-10">
-          <RequestMoreUsers onsubmit={()=>{
-            setIsModalOpen(true)
-          }} />
+          <RequestMoreUsers
+            onsubmit={() => {
+              setIsModalOpen(true);
+            }}
+          />
         </div>
       </div>
+
       <ModalAnt
         isVisible={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        // width="435px"
         showOkButton={true}
         cancelText="Request"
         okText="Make Payment"
@@ -75,8 +74,14 @@ function LoyaltriMobileApplication() {
           <UserCountInput />
           <CouponCodeInput />
         </section>
-
       </ModalAnt>
+
+      {/* Conditionally render ActiveInactiveUsers */}
+      {showActiveInactiveUsers && (
+        <div className="absolute inset-0 z-20">
+          <ActiveInactiveUsers />
+        </div>
+      )}
     </article>
   );
 }
