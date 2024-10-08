@@ -7,40 +7,66 @@ import HeaderThird from "../RequestAdditionalUserMore/HeaderThird";
 import UserCountInput from "./UserCountInput";
 
 function CouponCodeInput() {
-  const [isModaltwoOpen, setIsModaltwoOpen] = useState(false); // Modal for RequestMoreUsersMore
+  const [isModalOneOpen, setIsModalOneOpen] = useState(true); // First modal state
+  const [isModaltwoOpen, setIsModaltwoOpen] = useState(false); // Second modal state
 
-  // This function will handle the "Apply" button click
+  // Handle "Apply" button click
   const handleApplyClick = () => {
-    setIsModaltwoOpen(true); // Directly open the second popup
+    setIsModalOneOpen(false); // Close the first modal
+    setIsModaltwoOpen(true);  // Open the second modal
   };
 
   return (
     <div className="flex flex-col mt-3.5 w-[410px] text-sm leading-none min-h-[53px]">
+
+      {/* First Modal (RequestAdditionalUser) */}
+      {isModalOneOpen && (
+        <ModalAnt
+          isVisible={isModalOneOpen}
+          onClose={() => setIsModalOneOpen(false)}
+          showOkButton={false}
+          showCancelButton={false}
+          showTitle={false}
+          centered={true}
+          padding="8px"
+          customButton={false}
+        >
+          <section className="flex flex-col items-center py-5 w-[437px] h-[320px] rounded-2xl">
+            <HeaderThird />
+            <form className="flex flex-col mt-4 max-w-full w-[405px]">
+              <UserCountInput />
+              {/* Other form inputs */}
+            </form>
+          </section>
+        </ModalAnt>
+      )}
+
+      {/* Coupon Code Input */}
       <div className="flex overflow-hidden gap-10 justify-between items-center px-2 py-2.5 w-full rounded-lg border border-gray-300 border-dashed bg-zinc-50 min-h-[53px]">
-        <div className="flex gap-2 items-center self-stretch my-auto text-gray-500">
+        <div className="flex gap-2 items-center text-gray-500">
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d8007e64ed713fef7bca1475766268dafc9bb68562b78e266a1af4a2ba01f188?placeholderIfAbsent=true&apiKey=740fe41628444c68b4015f1a2abbfb39"
-            className="object-contain shrink-0 self-stretch my-auto w-6 aspect-square"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d8007e64ed713fef7bca1475766268dafc9bb68562b78e266a1af4a2ba01f188"
+            className="w-6"
             alt=""
           />
           <input
             type="text"
-            className="gap-2 self-stretch my-auto bg-transparent border-none outline-none"
+            className="bg-transparent border-none outline-none"
             placeholder="Type coupon code here"
           />
         </div>
         <button
-          onClick={handleApplyClick} // Directly open the second popup
-          className="flex items-start self-stretch my-auto font-semibold whitespace-nowrap rounded-lg text-zinc-800 overflow-hidden gap-2 px-3.5 py-2 bg-white border border-solid shadow-sm border-black border-opacity-10"
+          onClick={handleApplyClick} // Handle the "Apply" button
+          className="font-semibold rounded-lg text-zinc-800 px-3.5 py-2 bg-white border border-black border-opacity-10 shadow-sm"
         >
           Apply
         </button>
       </div>
 
-      {/* Second modal (RequestMoreUsersMore page) */}
+      {/* Second Modal (RequestMoreUsersMore) */}
       <ModalAnt
-        isVisible={isModaltwoOpen} // Show the second popup when true
+        isVisible={isModaltwoOpen} // Show second modal when true
         onClose={() => setIsModaltwoOpen(false)}
         showOkButton={true}
         cancelText="Request"
@@ -53,9 +79,9 @@ function CouponCodeInput() {
         padding="8px"
         customButton={false}
       >
-        <section className="flex overflow-hidden relative flex-col items-center py-5 w-[437px] h-[320px] rounded-2xl max-w-[437px]">
+        <section className="flex flex-col items-center py-5 w-[437px] h-[320px] rounded-2xl">
           <HeaderThird />
-          <form className="flex z-0 flex-col mt-4 max-w-full w-[405px]">
+          <form className="flex flex-col mt-4 max-w-full w-[405px]">
             <UserCountInputOne />
             <DiscountCode />
             <TotalAmount />
