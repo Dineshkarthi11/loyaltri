@@ -1,20 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import ModalAnt from "../../../common/ModalAnt";
 import UserCountInputOne from "../RequestAdditionalUserMore/UserCountInputOne";
 import DiscountCode from "../RequestAdditionalUserMore/DiscountCode";
 import TotalAmount from "../RequestAdditionalUserMore/TotalAmount";
 import HeaderThird from "../RequestAdditionalUserMore/HeaderThird";
-import UserCountInput from "./UserCountInput";
 
-function CouponCodeInput({onsubmit= ()=>{}}) {
-  const navigate = useNavigate(); // Initialize navigate hook
-  const [isModaltwoOpen, setIsModaltwoOpen] = useState(false);
-
-  // const handleApplyClick = () => {
-  //   // Navigate to RequestAdditionalUser page
-  //   navigate("/request-additional-user");
-  // };
+function CouponCodeInput() {
+  const [isModaltwoOpen, setIsModaltwoOpen] = useState(false); // Modal for RequestAdditionalUserMore
 
   return (
     <div className="flex flex-col mt-3.5 w-[410px] text-sm leading-none min-h-[53px]">
@@ -33,18 +26,19 @@ function CouponCodeInput({onsubmit= ()=>{}}) {
           />
         </div>
         <button
-          onClick={()=>{
-            setIsModaltwoOpen(true)
-          }} // Navigate to the RequestAdditionalUser page on click
+          onClick={() => {
+            setIsModaltwoOpen(true); // Directly open the RequestAdditionalUserMore modal
+          }}
           className="flex items-start self-stretch my-auto font-semibold whitespace-nowrap rounded-lg text-zinc-800 overflow-hidden gap-2 px-3.5 py-2 bg-white border border-solid shadow-sm border-black border-opacity-10"
         >
           Apply
         </button>
       </div>
+
+      {/* Directly show RequestAdditionalUserMore modal */}
       <ModalAnt
         isVisible={isModaltwoOpen}
         onClose={() => setIsModaltwoOpen(false)}
-        // width="435px"
         showOkButton={true}
         cancelText="Request"
         okText="Make Payment"
@@ -58,12 +52,8 @@ function CouponCodeInput({onsubmit= ()=>{}}) {
       >
         <section className="flex overflow-hidden relative flex-col items-center py-5 w-[437px] h-[320px] rounded-2xl max-w-[437px]">
           <HeaderThird />
-          <div
-            className="flex absolute bottom-0 z-0 self-start w-0 border-solid border-[5px] border-zinc-300 border-opacity-60 h-[361px] min-h-[286px] right-[-113px]"
-            aria-hidden="true"
-          ></div>
           <form className="flex z-0 flex-col mt-4 max-w-full w-[405px]">
-            <UserCountInput />
+            <UserCountInputOne />
             <DiscountCode />
             <TotalAmount />
           </form>
