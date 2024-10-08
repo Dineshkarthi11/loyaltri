@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function UserCount() {
+function UserCount({onsubmit= ()=>{}}) {
   const navigate = useNavigate();
 
   const handleUserCountClick = () => {
@@ -13,7 +13,7 @@ function UserCount() {
       <p className="text-gray-500">Users</p>
       <p
         className="text-base font-extrabold cursor-pointer mt-1"
-        onClick={handleUserCountClick}
+        onClick={onsubmit}
       >
         <span className="text-violet-600">25/</span>
         <span className="text-sm text-violet-600">50</span>{" "}
