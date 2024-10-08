@@ -85,3 +85,10 @@ function BillingHistoryItem({ date, orderId, isLatest, planDetails }) {
 }
 
 export default BillingHistoryItem;
+
+
+
+
+git add src/components/Header/subscriptions
+warning: in the working copy of 'src/components/Header/subscriptions/SubscriptionOverview/down-arrow.svg', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/components/Header/subscriptions/SubscriptionOverview/up-arrow.svg', LF will be replaced by CRLF the next time Git touches it
