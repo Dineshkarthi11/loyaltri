@@ -68,13 +68,12 @@ function BillingHistoryItem({ date, orderId, isLatest, planDetails }) {
             style={{ minHeight: "100%", height: "auto" }}
           />
           <div className="relative z-10 p-3 bg-opacity-80">
-            <div className="ml-6 text-gray-500 text-xs">Plan details</div>
-            <div className="border-t border-gray-200 mx-5 my-2" />
-            <div className="relative overflow-y-auto">
+            <div className="ml-6 my-4 text-gray-500 text-xs">Plan details</div>
+            <div className="relative my-10 overflow-y-auto">
               {planDetails.map((detail, index) => (
-                <div key={index} className="flex justify-between text-sm mx-6 mt-2">
-                  <div className="truncate">{detail.label}</div>
-                  <div className="truncate">{detail.value}</div>
+                <div key={index} className="flex my-6 justify-between text-sm mx-6 mt-2">
+                  <div className="truncate ">{detail.label}</div>
+                  <div className="truncate mx-[40%]">{detail.value}</div>
                 </div>
               ))}
             </div>
