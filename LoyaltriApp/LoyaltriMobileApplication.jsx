@@ -7,9 +7,6 @@ import UserCountInput from "../RequestAdditionalUser/UserCountInput";
 import CouponCodeInput from "../RequestAdditionalUser/CouponCodeInput";
 import ActionButtons from "../RequestAdditionalUser/ActionButtons";
 import HeaderSecond from "../RequestAdditionalUser/HeaderSecond";
-import HeaderActive from "../ActiveInactiveUsers/HeaderActive";
-import UserSearch from "../ActiveInactiveUsers/UserSearch";
-import UserList from "../ActiveInactiveUsers/UserList";
 import ActiveInactiveUsers from "../ActiveInactiveUsers/ActiveInactiveUsers";
 
 function LoyaltriMobileApplication() {
@@ -42,7 +39,7 @@ function LoyaltriMobileApplication() {
 
         {/* Bottom-left: User Count */}
         <div className="absolute bottom-4 left-5 z-10">
-          <UserCount onClick={() => setShowActiveInactiveUsers(true)} /> {/* Add onClick */}
+          <UserCount onsubmit={() => setShowActiveInactiveUsers(true)} /> {/* Add onClick */}
         </div>
 
         {/* Bottom-right: Request More Users */}
@@ -78,7 +75,10 @@ function LoyaltriMobileApplication() {
 
       {/* Conditionally render ActiveInactiveUsers */}
       {showActiveInactiveUsers && (
-        <div className="absolute inset-0 z-20">
+        <div
+          className="fixed inset-0 z-20 bg-white flex justify-center items-center"
+          style={{ zIndex: 50 }}
+        >
           <ActiveInactiveUsers />
         </div>
       )}
