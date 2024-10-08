@@ -1,13 +1,33 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ModalAnt from "../../../common/ModalAnt";
 import UserCountInputOne from "../RequestAdditionalUserMore/UserCountInputOne";
 import DiscountCode from "../RequestAdditionalUserMore/DiscountCode";
 import TotalAmount from "../RequestAdditionalUserMore/TotalAmount";
 import HeaderThird from "../RequestAdditionalUserMore/HeaderThird";
+import UserCountInput from "./UserCountInput";
 
 function CouponCodeInput() {
   const [isModaltwoOpen, setIsModaltwoOpen] = useState(false); // Modal for RequestAdditionalUserMore
+  const [isCouponValid, setIsCouponValid] = useState(false); // State for coupon validation (or any condition)
+
+  // This function will handle the "Apply" button click logic
+  const handleApplyClick = () => {
+    // Assuming you have some logic here to validate the coupon or handle conditions
+    // For example, let's assume the coupon is valid when a certain value is entered
+    const couponCode = "VALIDCOUPON"; // Example hardcoded valid coupon
+    const inputCode = document.querySelector("input").value; // Get the value from input
+
+    if (inputCode === couponCode) {
+      // Condition met, show the second popup (RequestMoreUsersMore page)
+      setIsCouponValid(true);
+      setIsModaltwoOpen(true); // Open the second popup
+    } else {
+      // Condition not met, close the first popup and don't show second popup
+      setIsCouponValid(false);
+      setIsModaltwoOpen(false); // Close first popup
+      alert("Invalid Coupon!"); // Optional alert for invalid coupon
+    }
+  };
 
   return (
     <div className="flex flex-col mt-3.5 w-[410px] text-sm leading-none min-h-[53px]">
@@ -26,18 +46,16 @@ function CouponCodeInput() {
           />
         </div>
         <button
-          onClick={() => {
-            setIsModaltwoOpen(true); // Directly open the RequestAdditionalUserMore modal
-          }}
+          onClick={handleApplyClick} // Handle apply click logic
           className="flex items-start self-stretch my-auto font-semibold whitespace-nowrap rounded-lg text-zinc-800 overflow-hidden gap-2 px-3.5 py-2 bg-white border border-solid shadow-sm border-black border-opacity-10"
         >
           Apply
         </button>
       </div>
 
-      {/* Directly show RequestAdditionalUserMore modal */}
+      {/* Second modal (RequestMoreUsersMore page) */}
       <ModalAnt
-        isVisible={isModaltwoOpen}
+        isVisible={isModaltwoOpen && isCouponValid} // Show only if coupon is valid
         onClose={() => setIsModaltwoOpen(false)}
         showOkButton={true}
         cancelText="Request"
