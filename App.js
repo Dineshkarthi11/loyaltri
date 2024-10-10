@@ -30,3 +30,5 @@ function App() {
 }
 
 export default App;
+
+https://dev-api.loyaltri.com/api/main
